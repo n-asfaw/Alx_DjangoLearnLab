@@ -2,6 +2,9 @@
 
 from django.shortcuts import render
 from relationship_app.models import Book
+from django.views.generic import DetailView
+from relationship_app.models import Library
+
 
 def list_books(request):
     # Fetch all books from the database
@@ -9,8 +12,6 @@ def list_books(request):
     # Render the 'list_books.html' template and pass the books
     return render(request, 'relationship_app/list_books.html', {'books': books})
 
-from django.views.generic import DetailView
-from relationship_app.models import Library
 
 class LibraryDetailView(DetailView):
     model = Library
