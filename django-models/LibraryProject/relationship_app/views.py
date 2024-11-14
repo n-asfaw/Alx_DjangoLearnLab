@@ -13,6 +13,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import permission_required
 
 
 # Function-based view to list all books
