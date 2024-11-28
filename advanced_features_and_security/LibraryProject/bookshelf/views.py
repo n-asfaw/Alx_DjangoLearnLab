@@ -2,10 +2,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
 from django.contrib.auth.decorators import permission_required
+from .forms import BookSearchForm
 
 # Create your views here.
 def home(request):
     return render(request, 'bookshelf/home.html')  # Render the home.html template
+
+def search_books(request):
+    form = BookSearchForm(request.GET)
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        books = Book.objects.filter(title__icontains=query)
+        return render(request, 'bookshelf/book_list.html', {'books': books})
+    return render(request, 'bookshelf/book_list.html', {'form': form})
 
 # View for creating a book
 @permission_required('bookshelf.can_create', raise_exception=True)
