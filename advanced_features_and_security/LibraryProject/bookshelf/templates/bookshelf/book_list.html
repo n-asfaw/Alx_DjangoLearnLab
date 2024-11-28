@@ -1,0 +1,35 @@
+<!-- bookshelf/templates/bookshelf/book_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+    <h1>Books</h1>
+
+    <!-- Check if there are any books to display -->
+    {% if books %}
+        <ul>
+            <!-- Loop through the books passed from the view -->
+            {% for book in books %}
+                <li>
+                    <strong>{{ book.title }}</strong> by {{ book.author }}<br>
+                    <p>{{ book.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books found.</p>
+    {% endif %}
+
+    <!-- Example form for searching books -->
+    <form method="GET" action="{% url 'search_books' %}">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render search form -->
+        <button type="submit">Search</button>
+    </form>
+
+</body>
+</html>
