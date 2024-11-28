@@ -3,6 +3,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
 from django.contrib.auth.decorators import permission_required
 from .forms import BookSearchForm
+from .forms import ExampleForm
+
+def example_view(request):
+    form = ExampleForm()
+    return render(request, 'bookshelf/form_example.html', {'form': form})
 
 # Create your views here.
 def home(request):
