@@ -27,6 +27,29 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
+# settings.py
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+
+# settings.py
+SECURE_HSTS_SECONDS = 31536000  # HSTS for one year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allow your domain to be included in the HSTS preload list
+
+# settings.py
+SESSION_COOKIE_SECURE = True  # Ensure session cookies are only sent over HTTPS
+
+# settings.py
+CSRF_COOKIE_SECURE = True  # Ensure CSRF cookies are only sent over HTTPS
+
+# settings.py
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking by disallowing your site from being framed
+
+# settings.py
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent MIME-sniffing a response
+
+# settings.py
+SECURE_BROWSER_XSS_FILTER = True  # Enable browser XSS filtering
+
 SECURE_BROWSER_XSS_FILTER = True  # Enable XSS filtering by browsers
 X_FRAME_OPTIONS = 'DENY'  # Prevent the site from being embedded in iframes (clickjacking protection)
 SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent browsers from interpreting files as a different MIME type
