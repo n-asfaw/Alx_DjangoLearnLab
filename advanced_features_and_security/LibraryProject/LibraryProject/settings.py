@@ -29,6 +29,9 @@ ALLOWED_HOSTS = []
 
 # settings.py
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
 # Force all HTTP requests to be redirected to HTTPS
 SECURE_SSL_REDIRECT = True
 
