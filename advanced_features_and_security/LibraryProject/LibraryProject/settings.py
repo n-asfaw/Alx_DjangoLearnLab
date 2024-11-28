@@ -28,6 +28,12 @@ DEBUG = False
 ALLOWED_HOSTS = []
 
 # settings.py
+
+# Force all HTTP requests to be redirected to HTTPS
+SECURE_SSL_REDIRECT = True
+
+
+# settings.py
 SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
 
 # settings.py
