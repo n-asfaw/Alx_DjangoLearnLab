@@ -14,3 +14,4 @@ class BookList(generics.ListAPIView):
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()  # The list of all books in the database
     serializer_class = BookSerializer  # Serializer used to convert Book instances to JSON
+    permission_classes = [IsAuthenticated]  # Only authenticated users can access this view
