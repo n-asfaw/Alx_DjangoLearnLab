@@ -15,12 +15,11 @@ class BookListView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]  # Allow read-only access for unauthenticated users
     
     # Enable filtering, search, and ordering functionality
-    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)  # Add OrderingFilter here
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)  # Use filters.OrderingFilter here
     filterset_fields = ['title', 'author', 'publication_year']  # Fields you want to filter by
     search_fields = ['title', 'author__name']  # Allow searching by title and author name
     ordering_fields = ['title', 'publication_year']  # Allow ordering by title and publication year
     ordering = ['title']  # Default ordering
-
 # DetailView: Retrieves a single book by ID
 class BookDetailView(generics.RetrieveAPIView):
     queryset = Book.objects.all()
