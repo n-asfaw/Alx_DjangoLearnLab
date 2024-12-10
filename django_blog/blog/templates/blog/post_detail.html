@@ -1,8 +1,18 @@
-<!-- post_detail.html -->
-{% extends "base_generic.html" %}
+<!-- blog/templates/blog/post_detail.html -->
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
 
-{% block content %}
-  <h1>{{ post.title }}</h1>
-  <p>{{ post.content }}</p>
-  <p>Written by: {{ post.author }}</p>
-{% endblock %}
+<h2>Comments</h2>
+{% for comment in comments %}
+    <p><strong>{{ comment.author.username }}:</strong> {{ comment.content }}</p>
+    <p><a href="{% url 'comment-edit' pk=comment.pk %}">Edit</a> | <a href="{% url 'comment-delete' pk=comment.pk %}">Delete</a></p>
+{% empty %}
+    <p>No comments yet.</p>
+{% endfor %}
+
+<h3>Add a Comment</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Post Comment</button>
+</form>
