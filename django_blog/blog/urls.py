@@ -8,4 +8,5 @@ urlpatterns = [
     path('post/new/', views.PostCreateView.as_view(), name='post-create'),  # Create a new post
     path('post/<int:pk>/edit/', views.PostUpdateView.as_view(), name='post-update'),  # Edit an existing post
     path('post/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post-delete'),  # Delete an existing post
+     path('post/<int:pk>/edit/', views.PostUpdateView.as_view(), name='post-update'),  # Edit an existing post 
 ]
