@@ -19,15 +19,11 @@ from django.urls import reverse_lazy
 from .models import Post, Comment
 from .forms import CommentForm
 
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment  # Reference to the Comment model
-        fields = ['content']  # Only the content of the comment is editable by the user
 
-    # You can add additional customization for the form fields here, such as adding custom widgets
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['content'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Write your comment here...'})
+form = CommentForm(request.POST)
+if form.is_valid():
+
+
 
 class PostListView(ListView):
     model = Post
