@@ -13,12 +13,12 @@ urlpatterns = [
     path('comments/<int:pk>/edit/', views.CommentUpdateView.as_view(), name='comment-edit'),  # Edit a comment
     path('comments/<int:pk>/delete/', views.CommentDeleteView.as_view(), name='comment-delete'),  # Delete a comment
      # URL pattern for creating a new comment
-    path('post/<int:post_id>/comments/new/', views.add_comment, name='add_comment'),
+    path('post/<int:pk>/comments/new/', views.add_comment, name='add_comment'),
     
     # URL pattern for editing an existing comment
-    path('comment/<int:comment_id>/update/', views.edit_comment, name='edit_comment'),
+    path('comment/<int:comment>/update/', views.edit_comment, name='edit_comment'),
     
     # URL pattern for deleting a comment
-    path('comment/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
+    path('comment/<int:comment>/delete/', views.delete_comment, name='delete_comment'),
    
 ]
