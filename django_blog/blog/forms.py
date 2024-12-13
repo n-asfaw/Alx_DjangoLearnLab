@@ -5,6 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Post, Tag
 from django.forms import widgets
+from taggit.forms import TagField  # Import TagField from taggit
+
 
 
 class TagWidget(widgets.TextInput):
@@ -13,7 +15,7 @@ class TagWidget(widgets.TextInput):
 
 
 class PostForm(forms.ModelForm):
-    tags = forms.CharField(required=False)  # Allow input of tags as comma-separated string
+    tags = TagField()  # Use TagField for tags
 
     class Meta:
         model = Post
