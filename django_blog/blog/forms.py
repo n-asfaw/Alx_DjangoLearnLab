@@ -5,6 +5,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Post, Tag
 
+
+class TagWidget(widgets.TextInput):
+    def render(self, name, value, attrs=None, renderer=None):
+        return super().render(name, value, attrs)
+
+
 class PostForm(forms.ModelForm):
     tags = forms.CharField(required=False)  # Allow input of tags as comma-separated string
 
