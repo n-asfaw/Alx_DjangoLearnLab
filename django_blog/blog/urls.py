@@ -19,6 +19,7 @@ urlpatterns = [
     path('comment/<int:comment>/update/', views.edit_comment, name='edit_comment'),
     
     # URL pattern for deleting a comment
-    path('comment/<int:comment>/delete/', views.delete_comment, name='delete_comment'),
+    path(comment/<int:pk>/update/", "comment/<int:pk>/delete/),
+    
    
 ]
