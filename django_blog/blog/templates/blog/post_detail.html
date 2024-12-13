@@ -16,3 +16,22 @@
     {{ comment_form.as_p }}
     <button type="submit">Post Comment</button>
 </form>
+
+<h2>Search Results for "{{ query }}"</h2>
+<ul>
+    {% for post in posts %}
+        <li><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></li>
+    {% empty %}
+        <li>No posts found.</li>
+    {% endfor %}
+</ul>
+
+<!-- post_detail.html -->
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+
+<p>Tags:
+    {% for tag in post.tags.all %}
+        <a href="{% url 'tagged_posts' tag.name %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</p>

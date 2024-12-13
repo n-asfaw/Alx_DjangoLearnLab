@@ -9,3 +9,9 @@
     <button type="submit">{% if object %}Update{% else %}Create{% endif %}</button>
   </form>
 {% endblock %}
+
+<!-- search_form.html -->
+<form method="get" action="{% url 'search' %}">
+  <input type="text" name="q" placeholder="Search..." value="{{ query }}">
+  <button type="submit">Search</button>
+</form>

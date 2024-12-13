@@ -18,8 +18,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Post, Comment
 from .forms import CommentForm
+from django.db.models import Q
 
-
+def posts_by_tag(request, tag_name):
+    tag = Tag.objects.get(name=tag_name)
+    posts = tag.posts.all()
+    return render(request, 'blog/posts_by_tag.html', {'posts': posts, 'tag': tag})
+    
 form = CommentForm(request.POST)
 if form.is_valid():
 
@@ -68,6 +73,15 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 # views.py
+def search(request):
+    query = request.GET.get('q', '')
+    posts = Post.objects.filter(
+        Q(title__icontains=query) |
+        Q(content__icontains=query) |
+        Q(tags__name__icontains=query)
+    ).distinct()
+
+    return render(request, 'blog/search_results.html', {'posts': posts, 'query': query})
 
 # User Login View
 def login_view(request):
