@@ -11,10 +11,11 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
+        # Create user with the provided data
         user = User(**validated_data)
         user.set_password(validated_data['password'])  # Hash the password
         user.save()
-        # Create and return the token for the new user
+        # Create and return a token for the new user
         Token.objects.create(user=user)
         return user
 
