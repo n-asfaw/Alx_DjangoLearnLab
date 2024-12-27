@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404
 from .models import Post, Like
 from notifications.models import Notification
 
+
+
 User = get_user_model()
 
 class UserFeedView(generics.ListAPIView):
@@ -22,11 +24,12 @@ class UserFeedView(generics.ListAPIView):
         return Response(post_data)
 
 
+
 class LikeViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def like(self, request, pk):
-        post = get_object_or_404(Post, pk=pk)
+        post = get_object_or_404(Post, pk=pk)  # Ensure this line is included
         like, created = Like.objects.get_or_create(user=request.user, post=post)
         
         if created:  # If the like was newly created
@@ -40,10 +43,11 @@ class LikeViewSet(viewsets.ViewSet):
         return Response({'status': 'already liked'}, status=400)
 
     def unlike(self, request, pk):
-        post = get_object_or_404(Post, pk=pk)
+        post = get_object_or_404(Post, pk=pk)  # Ensure this line is included
         try:
             like = Like.objects.get(user=request.user, post=post)
             like.delete()
             return Response({'status': 'unliked'})
         except Like.DoesNotExist:
             return Response({'status': 'not liked'}, status=400)
+
