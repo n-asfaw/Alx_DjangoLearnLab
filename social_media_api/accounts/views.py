@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
 from rest_framework import generics, permissions
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 User = get_user_model()
 
 class UserListView(generics.ListAPIView):
-    queryset = User.objects.all()
+    queryset = User.objects.all()  # This retrieves all users
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
